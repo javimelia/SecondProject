@@ -27,8 +27,7 @@
         chart.src = "resources/icons-arrow-chart.png"
         chart.style.width = "20px"
         var a = document.createElement("a")
-        const arr = [clasificacion[i].team.name].map(str => str.replace(/\s/g, ''));
-        console.log(arr)
+        var arr = [clasificacion[i].team.name].map(str => str.replace(/\s/g, ''));
         a.href = "estadisticas.html" + "#" + arr
         a.classList.add("botones")
         a.appendChild(chart)
