@@ -9,6 +9,10 @@ function filtro(partido) {
     var empatados = []
     var porjugar = []
 
+    if (document.getElementById("sinResultado") != null) {
+        document.getElementById("sinResultado").remove()
+    }
+
     if (filter === "") {
         partidos(partido)
     }
@@ -66,13 +70,16 @@ function filtro(partido) {
             }
         }
 
+        partidos(PartFiltrados)
+        document.getElementById("SoloGanados").addEventListener("click", function () {
+            partidos(ganados)
+            document.getElementById("reset").disabled = false
+        })
+
         if (PartFiltrados.length > 0) {
 
-            partidos(PartFiltrados)
-            document.getElementById("SoloGanados").addEventListener("click", function () {
-                partidos(ganados)
-                document.getElementById("reset").disabled = false
-            })
+            
+           
             document.getElementById("SoloEmpatados").addEventListener("click", function () {
                 partidos(empatados)
                 document.getElementById("reset").disabled = false
@@ -90,9 +97,7 @@ function filtro(partido) {
 
         else {
             document.getElementById("Tabla").innerHTML = ""
-            if (document.getElementById("sinResultado") != null) {
-                document.getElementById("sinResultado").remove()
-            }
+            
             var sinResultado = document.createElement("div")
             sinResultado.innerHTML = "No se han encontrado resultados"
             sinResultado.id = "sinResultado"
@@ -104,7 +109,14 @@ function filtro(partido) {
 
 }
 
-
+function reset() {
+    document.getElementById("inputText").value = ""
+    getDataPartidos()
+    document.getElementById("SoloGanados").checked = false
+    document.getElementById("SoloEmpatados").checked = false
+    document.getElementById("SoloPerdidos").checked = false
+    document.getElementById("PorJugar").checked = false
+}
 
 function partidos(partido) {
 
@@ -248,12 +260,4 @@ function fechaPartido(partido) {
 }
 
 
-function reset() {
-    getDataPartidos()
-    document.getElementById("sinResultado").remove()
-    document.getElementById("SoloGanados").checked = false
-    document.getElementById("SoloEmpatados").checked = false
-    document.getElementById("SoloPerdidos").checked = false
-    document.getElementById("PorJugar").checked = false
-    document.getElementById("inputText").value = ""
-}
+

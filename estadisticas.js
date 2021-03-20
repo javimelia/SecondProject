@@ -106,7 +106,10 @@ function estadisticas (equipos, clasificacion, partido) {
         equipo.classList.add("recuadro")
         standings.appendChild(equipo)
 
-        
+        a = document.createElement("a")
+        var arr2 = [equipos[i].name].map(str => str.replace(/\s/g, ''));
+        a.id = arr2
+        equipo.prepend(a)
         
         logo = document.createElement("img")
         logo.src = `${equipos[i].crestUrl}`
@@ -121,16 +124,10 @@ function estadisticas (equipos, clasificacion, partido) {
         encabezado.classList.add("encabezado")
         info.appendChild(encabezado)
 
-
         nombre = document.createElement("div")
         nombre.innerHTML = `${equipos[i].name}`
         nombre.classList.add("nombre")
         encabezado.appendChild(nombre)
-
-        a = document.createElement("a")
-        const arr = [equipos[i].name].map(str => str.replace(/\s/g, ''));
-        a.id = arr
-        nombre.appendChild(a)
 
         apodo = document.createElement("div")
         apodo.innerHTML = "Apodo: " + `${equipos[i].shortName}`
@@ -197,7 +194,19 @@ function estadisticas (equipos, clasificacion, partido) {
         GolesMarcados.appendChild(GolesMarcadosLocal)
 
         connect_equiposPartido (equipos, partido)
+
+        
         
     }
+
+    var scroll = location.hash
+    var res = scroll.replace("#","")
+    var element = document.getElementById(res)
+    var elementPosition = element.getBoundingClientRect().top
+    var offsetPosition = elementPosition - 100
+    window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth"
+   });
 }
 
