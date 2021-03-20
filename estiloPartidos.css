@@ -1,0 +1,109 @@
+.filtrado {
+    background: chartreuse;
+}
+
+.inputButton {
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    flex-direction: row;
+    width: 500px;
+    justify-content:space-around;
+}
+
+.inputText {
+    width: 200px;
+}
+
+.inputRadio {
+    width: 500px;
+    margin-top: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content:space-around;
+}
+
+table, th, td, tr {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 25px;
+}
+
+.table {
+    width:80%;
+    margin-left:auto;
+    margin-right:auto;
+}
+
+thead th {
+    top: 0;
+    font-size: 25px;
+    text-align: left;
+}
+
+thead th:last-child,
+thead th:nth-child(2) {
+    padding-left: 100px;
+}
+img {
+    margin-right: 10px;
+    padding-bottom: 3px;
+}
+
+td:nth-child(1) {
+    font-size: 20px;
+}
+
+tr {
+    height: 70px;
+}
+
+td:nth-child(1),
+td:nth-child(3),
+td:nth-child(4),
+td:nth-child(5) {
+    text-align: center;
+}
+
+td:nth-last-child(1) {
+    text-align: left;
+}
+
+td:nth-child(2),
+td:nth-last-child(1) {
+    padding-left: 30px;
+}
+
+.noFinalizado {
+    text-align: center;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.fecha {
+    font-size:15px;
+}
+
+td.ganador {
+    font-weight: 900;
+}
+
+.GolPentalti {
+    display: flex;
+    flex-direction: row;
+}
+
+.penaltis {
+    font-size: 15px;
+    padding-top: 7px;
+    margin-left: 3px;
+}
+
+.sinResultado {
+    margin-top: 40px;
+    width: 100%;
+    text-align: center;
+    font-size: 40px;
+    color: rgb(189, 187, 187);
+}

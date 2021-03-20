@@ -1,0 +1,115 @@
+.inputText {
+    width: 30%;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    flex-direction: row;
+    
+}
+
+
+.caja {
+    margin-top: 50px;
+}
+
+.recuadro {
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 30px;
+    display: flex;
+    flex-direction: row;
+    border: 1px solid rgb(2, 56, 2);
+    border-radius: 10px;
+    padding: 15px;
+    background-color: rgb(195, 223, 195);
+}
+
+.info {
+    flex-direction: column;
+    width: 100%;
+}
+
+.encabezado {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.nombre {
+    margin-left: 0px;
+    width: 45%;
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.apodo {
+    margin-left: 20px;
+}
+
+.otrosDatosContent,
+.apodo {
+    font-size: 13px;
+    font-weight: normal;
+}
+
+.otrosDatos {
+    margin-top: 15px;
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+}
+
+.forma {
+    margin-top: 15px;
+    width: 166px;
+    display: table;
+    border-collapse:separate;
+    border-spacing: 4px;
+    right:0px;
+}
+
+.formaGanado,
+.formaEmpatado,
+.formaPerdido {
+    display: table-cell;
+    vertical-align: middle;
+    width: 30px;
+    text-align: center;
+    border:black solid 1px;
+    border-radius: 7px;
+}
+
+.formaGanado {
+    background-color: rgb(59, 153, 59);
+}
+
+.formaEmpatado {
+    background-color: rgb(194, 179, 46);
+}
+
+.formaPerdido {
+    background-color: rgb(192, 46, 46);
+}
+
+.TitulosPartidos,
+.porcentajes {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+}
+
+.TitulosPartidos > div {
+    margin-top: 20px;
+    width: 33%;
+    font-size: 22px;
+    font-weight: bold;
+}
+
+
+.porcentajes > div {
+    width: 33%;
+    font-size: 25px;
+}

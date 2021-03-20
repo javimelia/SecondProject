@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <link href="estilo.css" rel="stylesheet">
+    <link href="estiloPartidos.css" rel="stylesheet">
+    <title>Partidos</title>
+</head>
+<body>
+    <div>
+        <a href="clasificacion.html">Ver clasificación</a>
+        <a href="estadisticas.html">Estadísticas</a>
+    </div>
+
+    <div class="inputButton">
+        <input type="text" id="inputText" onkeyup="getDataPartidos()" class="inputText">
+        <button type="button" id="reset" class="reset" onclick="reset()" disabled>Quitar filtros</button>
+    </div>
+    
+    <div class="inputRadio">
+        <input type="radio" class="form-check-input" id="SoloGanados" name="filtrResult" value="Ganados">
+        <label for="Ganados" class="form-check-label">Ganados</label>
+        <input type="radio" class="form-check-input" id="SoloEmpatados" name="filtrResult" value="Empatados">
+        <label for="Empatados" class="form-check-label">Empatados</label>
+        <input type="radio" class="form-check-input" id="SoloPerdidos" name="filtrResult" value="Perdidos">
+        <label for="Perdidos" class="form-check-label">Perdidos</label>
+        <input type="radio" class="form-check-input" id="PorJugar" name="filtrResult" value="PorDisputar">
+        <label for="PorDisputar" class="form-check-label">Por Disputar</label>
+    </div>
+
+    
+
+    <div id="cuerpo">
+        <table class="table table-hover">
+            <thead class="thead-light">
+                <th>Jornada</th>
+                <th scope="col" colspan="3">Equipo Local</th>
+                <th scope="col" colspan="3">Equipo Visitante</th>
+            </thead>
+            <tbody class="Tabla "id="Tabla">
+
+            </tbody>
+        </table>
+    </div>
+
+
+    <script src="data-partidos.js"></script>
+    <script src="partidos.js"></script>
+</body>
+</html>
