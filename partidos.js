@@ -2,8 +2,16 @@ function filtro (partido) {
 
     // Recoger valor del input rexto y estandarizarlo: poner en minúsculas y sin acentos
 
+    var redirect = location.hash
+    var res = redirect.replace("#","").toLowerCase().replace(/ /g,"").normalize('NFD').replace(/[\u0300-\u036f]/g,"")
+    if (res != "") {
+        var filter = res
+    }
+    else {
     var input = document.getElementById("inputText")
-    var filter = input.value.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, "")
+    filter = input.value.toLowerCase().replace(/ /g,"").normalize('NFD').replace(/[\u0300-\u036f]/g,"")
+    }
+    console.log(filter)
 
     // Crear arrays nuevos para los filtros de texto y de resultado
 
@@ -34,7 +42,7 @@ function filtro (partido) {
             // Comprobar si hay alguna coincidencia entre el valor del input y la data, una vez estandarizada. 
             // Primero se coteja con el nombre del equipo local y luego el visitante
 
-            if (partido[i].homeTeam.name.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, "").indexOf(filter) > -1) {
+            if (partido[i].homeTeam.name.toLowerCase().replace(/ /g,"").normalize('NFD').replace(/[\u0300-\u036f]/g,"").indexOf(filter) > -1) {
 
                 // Si existe una coincidencia se añade el partido al array PartFiltrados
 
@@ -69,7 +77,7 @@ function filtro (partido) {
 
             // Mismo procedimiento para buscar coincidencias con el nombre del equipo visitante y llenar los arrays
 
-            if (partido[i].awayTeam.name.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, "").indexOf(filter) > -1) {
+            if (partido[i].awayTeam.name.toLowerCase().replace(/ /g,"").normalize('NFD').replace(/[\u0300-\u036f]/g,"").indexOf(filter) > -1) {
 
                 PartFiltrados.push(partido[i])
 
@@ -105,7 +113,6 @@ function filtro (partido) {
             sinResultado ()
         }
     }
-
 
     // Se asigna una función a cada input radio para que al ser clicados muestren sus correspondientes arrays
 

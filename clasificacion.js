@@ -27,8 +27,9 @@
         chart.src = "resources/icons-arrow-chart.png"
         chart.style.width = "20px"
         var a = document.createElement("a")
-        var arr = [clasificacion[i].team.name].map(str => str.replace(/\s/g, ''));
-        a.href = "estadisticas.html" + "#" + arr
+        var arr = `${clasificacion[i].team.name}`
+        var arr2 = arr.toLowerCase().replace(/ /g,"").normalize('NFD').replace(/[\u0300-\u036f]/g,"")
+        a.href = "estadisticas.html" + "#" + arr2
         a.classList.add("botones")
         a.appendChild(chart)
         botones.appendChild(a)
@@ -37,7 +38,7 @@
         marcador.src = "resources/marcador.png"
         marcador.style.width = "20px"
         var a2 = document.createElement("a")
-        a2.href = "partidos.html"
+        a2.href = "partidos.html" + "#" + arr2
         a2.classList.add("botones")
         a2.appendChild(marcador)
         botones.appendChild(a2)

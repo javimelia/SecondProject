@@ -107,7 +107,8 @@ function estadisticas (equipos, clasificacion, partido) {
         standings.appendChild(equipo)
 
         a = document.createElement("a")
-        var arr2 = [equipos[i].name].map(str => str.replace(/\s/g, ''));
+        var arr = `${equipos[i].name}`
+        arr2 = arr.toLowerCase().replace(/ /g,"").normalize('NFD').replace(/[\u0300-\u036f]/g,"")
         a.id = arr2
         equipo.prepend(a)
         
@@ -201,12 +202,14 @@ function estadisticas (equipos, clasificacion, partido) {
 
     var scroll = location.hash
     var res = scroll.replace("#","")
-    var element = document.getElementById(res)
-    var elementPosition = element.getBoundingClientRect().top
-    var offsetPosition = elementPosition - 100
-    window.scrollTo({
-        top: offsetPosition,
-        behavior: "smooth"
-   });
+    if (res != "") {
+        var element = document.getElementById(res)
+        var elementPosition = element.getBoundingClientRect().top
+        var offsetPosition = elementPosition - 100
+        window.scrollTo({
+            top: offsetPosition,
+            behavior: "smooth"
+        });
+    }
 }
 
