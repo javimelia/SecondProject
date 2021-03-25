@@ -1,7 +1,11 @@
-function filtro(partido) {
+function filtro (partido) {
+
+    // Recoger valor del input rexto y estandarizarlo: poner en minúsculas y sin acentos
 
     var input = document.getElementById("inputText")
     var filter = input.value.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, "")
+
+    // Crear arrays nuevos para los filtros de texto y de resultado
 
     var PartFiltrados = []
     var ganados = []
@@ -9,43 +13,61 @@ function filtro(partido) {
     var empatados = []
     var porjugar = []
 
-    if (document.getElementById("sinResultado") != null) {
-        document.getElementById("sinResultado").remove()
-    }
+    // Llamar a la función que elimina el texto "No se han encontrado coincidencias" cuando no hay partidos que mostrar
+
+    QuitarSinResultado ()
+
+    // Se muestra la tabla entera si no hay nada escrito en el input o se lleva a cabo el filtrado
 
     if (filter === "") {
         partidos(partido)
+        
     }
     else {
+
+        // Habilitar botón para quitar filtros actuales
 
         document.getElementById("reset").disabled = false
 
         for (i = 0; i < partido.length; i++) {
 
+            // Comprobar si hay alguna coincidencia entre el valor del input y la data, una vez estandarizada. 
+            // Primero se coteja con el nombre del equipo local y luego el visitante
+
             if (partido[i].homeTeam.name.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, "").indexOf(filter) > -1) {
 
+                // Si existe una coincidencia se añade el partido al array PartFiltrados
+
                 PartFiltrados.push(partido[i])
+
+                // Según el resultado del partido para el equipo local, se añade el partido al array correspondiente
+                // Al existir al menos un partido que cumple esta condición, se habilita el filtro
 
                 if (partido[i].score.winner === "HOME_TEAM") {
 
                     ganados.push(partido[i])
-
+                    document.getElementById("SoloGanados").disabled = false
                 }
 
                 if (partido[i].score.winner === "AWAY_TEAM") {
 
                     perdidos.push(partido[i])
+                    document.getElementById("SoloPerdidos").disabled = false
                 }
 
                 if (partido[i].score.winner === "DRAW") {
                     empatados.push(partido[i])
+                    document.getElementById("SoloEmpatados").disabled = false
                 }
 
                 if (partido[i].status === "SCHEDULED") {
                     porjugar.push(partido[i])
+                    document.getElementById("PorJugar").disabled = false
                 }
 
             }
+
+            // Mismo procedimiento para buscar coincidencias con el nombre del equipo visitante y llenar los arrays
 
             if (partido[i].awayTeam.name.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, "").indexOf(filter) > -1) {
 
@@ -54,60 +76,97 @@ function filtro(partido) {
                 if (partido[i].score.winner === "AWAY_TEAM") {
 
                     ganados.push(partido[i])
-
+                    document.getElementById("SoloGanados").disabled = false
                 }
                 if (partido[i].score.winner === "HOME_TEAM") {
 
                     perdidos.push(partido[i])
+                    document.getElementById("SoloPerdidos").disabled = false
                 }
                 if (partido[i].score.winner === "DRAW") {
                     empatados.push(partido[i])
+                    document.getElementById("SoloEmpatados").disabled = false
                 }
                 if (partido[i].status === "SCHEDULED") {
                     porjugar.push(partido[i])
+                    document.getElementById("PorJugar").disabled = false
                 }
 
             }
         }
+    
+        // Se muestra el array con los partidos filtrados una vez se acabó de comprobar todos los partidos
 
         partidos(PartFiltrados)
-        document.getElementById("SoloGanados").addEventListener("click", function () {
-            partidos(ganados)
-            document.getElementById("reset").disabled = false
-        })
 
-        if (PartFiltrados.length > 0) {
+        // Si no se ha llegado a encontrar ninguna coincidencia, se llama a la función que muestra que no hay resultados
 
-            
-           
-            document.getElementById("SoloEmpatados").addEventListener("click", function () {
-                partidos(empatados)
-                document.getElementById("reset").disabled = false
-            })
-            document.getElementById("SoloPerdidos").addEventListener("click", function () {
-                partidos(perdidos)
-                document.getElementById("reset").disabled = false
-            })
-            document.getElementById("PorJugar").addEventListener("click", function () {
-                partidos(porjugar)
-                document.getElementById("reset").disabled = false
-            })
-
+        if (PartFiltrados.length == "0") {
+            sinResultado ()
         }
-
-        else {
-            document.getElementById("Tabla").innerHTML = ""
-            
-            var sinResultado = document.createElement("div")
-            sinResultado.innerHTML = "No se han encontrado resultados"
-            sinResultado.id = "sinResultado"
-            sinResultado.classList.add("sinResultado")
-            document.getElementById("cuerpo").appendChild(sinResultado)
-        }
-
     }
 
+
+    // Se asigna una función a cada input radio para que al ser clicados muestren sus correspondientes arrays
+
+    document.getElementById("SoloGanados").addEventListener("click", function () {
+        QuitarSinResultado ()
+        if (ganados.length == "0") {
+            sinResultado ()
+        }
+        else {
+            partidos(ganados)
+            document.getElementById("reset").disabled = false
+        }
+    })
+     
+    document.getElementById("SoloEmpatados").addEventListener("click", function () {
+        QuitarSinResultado ()
+        if (empatados.length == "0") {
+            sinResultado ()
+        }
+        else {
+            partidos(empatados)
+            document.getElementById("reset").disabled = false
+        }
+    })
+    document.getElementById("SoloPerdidos").addEventListener("click", function () {
+        QuitarSinResultado ()
+        if (perdidos.length == "0") {
+            sinResultado ()
+        }
+        else {
+            partidos(perdidos)
+            document.getElementById("reset").disabled = false
+        }
+    })
+    document.getElementById("PorJugar").addEventListener("click", function () {
+        QuitarSinResultado ()
+        if (porjugar.length == "0") {
+            sinResultado ()
+        }
+        else {
+            partidos(porjugar)
+            document.getElementById("reset").disabled = false
+        }
+    })
 }
+
+function QuitarSinResultado () {
+    if (document.getElementById("sinResultado") != null) {
+        document.getElementById("sinResultado").remove()
+    }
+}
+
+function sinResultado () {
+    document.getElementById("Tabla").innerHTML = ""
+    var sinResultado = document.createElement("div")
+    sinResultado.innerHTML = "No se han encontrado resultados"
+    sinResultado.id = "sinResultado"
+    sinResultado.classList.add("sinResultado")
+    document.getElementById("cuerpo").appendChild(sinResultado)
+}
+
 
 function reset() {
     document.getElementById("inputText").value = ""

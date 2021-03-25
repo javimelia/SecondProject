@@ -10,10 +10,21 @@
     <title>Partidos</title>
 </head>
 <body>
-    <div>
-        <a href="clasificacion.html">Ver clasificación</a>
-        <a href="estadisticas.html">Estadísticas</a>
-    </div>
+    <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">
+            <img src="/resources/laliga-1.svg" width="150" height="50" alt="">
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div class="navbar-nav">
+            <a class="nav-item nav-link active" href="partidos.html">Partidos</a>
+            <a class="nav-item nav-link" href="clasificacion.html">Clasificación</a>
+            <a class="nav-item nav-link" href="estadisticas.html">Estadísticas</a>
+          </div>
+        </div>
+    </nav>
 
     <div class="inputButton">
         <input type="text" id="inputText" onkeyup="getDataPartidos()" class="inputText">
@@ -21,13 +32,13 @@
     </div>
     
     <div class="inputRadio">
-        <input type="radio" class="form-check-input" id="SoloGanados" name="filtrResult" value="Ganados">
+        <input type="radio" class="form-check-input" id="SoloGanados" name="filtrResult" value="Ganados" disabled>
         <label for="Ganados" class="form-check-label">Ganados</label>
-        <input type="radio" class="form-check-input" id="SoloEmpatados" name="filtrResult" value="Empatados">
+        <input type="radio" class="form-check-input" id="SoloEmpatados" name="filtrResult" value="Empatados" disabled>
         <label for="Empatados" class="form-check-label">Empatados</label>
-        <input type="radio" class="form-check-input" id="SoloPerdidos" name="filtrResult" value="Perdidos">
+        <input type="radio" class="form-check-input" id="SoloPerdidos" name="filtrResult" value="Perdidos" disabled>
         <label for="Perdidos" class="form-check-label">Perdidos</label>
-        <input type="radio" class="form-check-input" id="PorJugar" name="filtrResult" value="PorDisputar">
+        <input type="radio" class="form-check-input" id="PorJugar" name="filtrResult" value="PorDisputar" disabled>
         <label for="PorDisputar" class="form-check-label">Por Disputar</label>
     </div>
 
